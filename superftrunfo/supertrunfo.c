@@ -1,105 +1,116 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das cartas
-// Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
-
-// Cada carta deve conter os seguintes atributos:
 int main() {
-  char estado[20];
-  char codigo[5];
-  char cidade[20];
-  int populacao;
-  float area;
-  float pib;
-  int turismo;
-  float dp; // dp = densidade populacional
-  float renda;
+    // Carta 1
+    char estado[20];
+    char codigo[10];
+    char cidade[20];
+    unsigned long int populacao;
+    float area;
+    float pib;
+    int turismo;
+    float dp;     // densidade populacional
+    float renda;  // PIB per capita
+    float superPoder1;
 
+    // Carta 2
+    char estado2[20];
+    char codigo2[10];
+    char cidade2[20];
+    unsigned long int populacao2;
+    float area2;
+    float pib2;
+    int turismo2;
+    float dp2;
+    float renda2;
+    float superPoder2;
 
-  // variáveis da segunda carta
-  char estado2[20];
-  char codigo2[5];
-  char cidade2[20];
-  int populacao2;
-  float area2;
-  float pib2;
-  int turismo2;
-  float dp2; // dp = densidade populacional
-  float renda2;
+    printf("Bem vindo(a) ao jogo Super-Trunfo.\n\n");
 
-printf("Bem vindo(a) ao jogo Super-Trunfo. Vamos iniciar coletando dados de suas cartas. \n");
+    // ===== Carta 1 =====
+    printf("Cadastro da Carta 1\n");
 
-// dados da primeira carta:
+    printf("Estado:\n");
+    scanf("%s", estado);
 
-printf("Vamos cadastrar os dados da sua primeira carta. \n");
+    printf("Codigo:\n");
+    scanf("%s", codigo);
 
-printf("Estado da carta 1:\n");
-scanf(" %s", estado);
+    printf("Cidade:\n");
+    scanf("%s", cidade);
 
-printf("Código da carta 1:\n");
-scanf("%s", codigo);
+    printf("Populacao:\n");
+    scanf("%lu", &populacao);
 
-printf("Nome da cidade carta 1:\n");
-scanf("%s", cidade);
+    printf("Area (km²):\n");
+    scanf("%f", &area);
 
-printf("População total carta 1:\n");
-scanf("%d", &populacao);
+    printf("PIB:\n");
+    scanf("%f", &pib);
 
-printf("Tamanho da área em Km² carta 1:\n");
-scanf("%f", &area);
+    printf("Pontos turisticos:\n");
+    scanf("%d", &turismo);
 
-printf("Produto Interno Bruto - PIB carta 1:\n");
-scanf("%f", &pib);
+    dp = (float)populacao / area;
+    renda = pib / (float)populacao;
 
-printf("Quantidade de pontos turísticos carta 1:\n");
-scanf("%d", &turismo);
-printf("\n");
+    // ===== Carta 2 =====
+    printf("\nCadastro da Carta 2\n");
 
-// cálculo da primeira carta:
-dp = populacao / area;
-renda = pib / populacao;
+    printf("Estado:\n");
+    scanf("%s", estado2);
 
-// dados da segunda carta:
+    printf("Codigo:\n");
+    scanf("%s", codigo2);
 
-printf("Agora vamos cadastrar os dados da sua segunda carta. \n");
+    printf("Cidade:\n");
+    scanf("%s", cidade2);
 
-printf("Estado da carta 2:\n");
-scanf("%s", estado2);
+    printf("Populacao:\n");
+    scanf("%lu", &populacao2);
 
-printf("Código da carta 2:\n");
-scanf("%s", codigo2);
+    printf("Area (km²):\n");
+    scanf("%f", &area2);
 
-printf("Nome da cidade carta 2:\n");
-scanf("%s", cidade2);
+    printf("PIB:\n");
+    scanf("%f", &pib2);
 
-printf("População total carta 2:\n");
-scanf("%d", &populacao2);
+    printf("Pontos turisticos:\n");
+    scanf("%d", &turismo2);
 
-printf("Tamanho da área em Km² carta 2:\n");
-scanf("%f", &area2);
+    dp2 = (float)populacao2 / area2;
+    renda2 = pib2 / (float)populacao2;
 
-printf("Produto Interno Bruto - PIB carta 2:\n");
-scanf("%f", &pib2);
+    // ===== Super Poder =====
+    superPoder1 =
+        (float)populacao +
+        area +
+        pib +
+        turismo +
+        renda +
+        (1 / dp);
 
-printf("Quantidade de pontos turísticos carta 2:\n");
-scanf("%d", &turismo2);
-printf("\n\n");
+    superPoder2 =
+        (float)populacao2 +
+        area2 +
+        pib2 +
+        turismo2 +
+        renda2 +
+        (1 / dp2);
 
-// cálculo da segunda carta:
-dp2 = populacao2 / area2;
-renda2 = pib2 / populacao2;
+    // ===== Comparações =====
+    printf("\nComparacao de Cartas:\n\n");
 
-printf("Carta 1: \n Estado: %s \n Código: %s \n Nome da Cidade: %s \n", estado, codigo, cidade);
-printf(" População: %d \n Área: %f \n PIB: %f bilhões \n Número de pontos turísticos: %d  \n", populacao, area, pib, turismo);
-printf(" Densidade populacional: %.2f hab/km² \n PIB per Capita: %.2f reais \n", dp, renda);
+    printf("Populacao: Carta 1 venceu (%d)\n", populacao > populacao2);
+    printf("Area: Carta 1 venceu (%d)\n", area > area2);
+    printf("PIB: Carta 1 venceu (%d)\n", pib > pib2);
+    printf("Pontos Turisticos: Carta 1 venceu (%d)\n", turismo > turismo2);
 
-printf("\n");
+    // densidade: menor vence
+    printf("Densidade Populacional: Carta 1 venceu (%d)\n", dp < dp2);
 
-printf("Carta 2: \n Estado: %s \n Código: %s \n Nome da Cidade: %s \n", estado2, codigo2, cidade2);
-printf(" População: %d \n Área: %f \n PIB: %f bilhões \n Número de pontos turísticos: %d \n", populacao2, area2, pib2, turismo2);
-printf(" Densidade populacional: %.2f hab/km² \n PIB per Capita: %.2f reais \n", dp2, renda2);
+    printf("PIB per Capita: Carta 1 venceu (%d)\n", renda > renda2);
+    printf("Super Poder: Carta 1 venceu (%d)\n", superPoder1 > superPoder2);
 
-return 0;
-
-} 
+    return 0;
+}
